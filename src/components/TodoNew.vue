@@ -1,7 +1,9 @@
 <template>
     <div class="todo_add">
+      <form class="todo_add__form">
         <input class="todo__input todo__input__add" type="text" placeholder="What you have to do?">
-        <button class="todo__button todo__button__add">Add</button>
+        <button type="submit" class="todo__button todo__button__add">Add</button>
+      </form>
     </div>
 </template>
 
@@ -9,13 +11,16 @@
 export default {
     name: 'TodoNew',
     data(){
-        
+        return {
+          
+        }
     }
 }
 </script>
 
 <style scoped>
-.todo_add{
+.todo_add__form{
+  width: 100%;
   display: flex;
 }
 .todo__input{

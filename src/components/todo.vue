@@ -6,21 +6,14 @@
     </div>
     <div class="todo__body">
       <div class="todos">
-        <TodoItem />
-        <!-- <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem />
-        <TodoItem /> -->
+        <TodoItem v-for="todo in todos" :key="todo.id" v-bind:todo="todo">{{ todo.title }}</TodoItem>
     </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import TodoNew from './TodoNew.vue';
 import TodoItem from './TodoItem.vue';
 
@@ -34,6 +27,16 @@ export default {
     return {
       title: 'Todo List'
     }
+  },
+  computed: {
+    ...mapState(['todos'])
+  },
+  methods: {
+    ...mapActions(['getTodos'])
+  },
+
+  mounted(){
+    this.$store.dispatch("getTodos");
   }
 }
 </script>
@@ -99,22 +102,5 @@ a {
 .todos{
   max-height: 300px;
   overflow: auto;
-}
-.todos__item{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 2rem;
-  border-bottom: 1px solid #cfcfcf;
-}
-.todos__item:last-child{
-  border: none;
-}
-
-.todos__left{
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 </style>
