@@ -1,8 +1,8 @@
 <template>
     <div class="todo_add">
       <form class="todo_add__form">
-        <input class="todo__input todo__input__add" type="text" placeholder="What you have to do?">
-        <button type="submit" class="todo__button todo__button__add">Add</button>
+        <input v-model="newTodo" class="todo__input todo__input__add" type="text" placeholder="What you have to do?">
+        <button v-on:click="addTodo" type="button" class="todo__button todo__button__add">Add</button>
       </form>
     </div>
 </template>
@@ -12,8 +12,14 @@ export default {
     name: 'TodoNew',
     data(){
         return {
-          
+          newTodo: null
         }
+    },
+
+    methods: {
+      addTodo(){
+        this.$store.dispatch('addTodo', this.newTodo);
+      }
     }
 }
 </script>

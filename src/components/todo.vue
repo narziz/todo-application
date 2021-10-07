@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import {  mapState } from 'vuex';
 import TodoNew from './TodoNew.vue';
 import TodoItem from './TodoItem.vue';
 
@@ -32,7 +32,7 @@ export default {
     ...mapState(['todos'])
   },
   methods: {
-    ...mapActions(['getTodos'])
+    // ...mapActions(['getTodos'])
   },
 
   mounted(){
