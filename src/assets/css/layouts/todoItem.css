@@ -1,0 +1,32 @@
+@import '../components/button.css';
+@import '../components/input.css';
+
+.todos__item{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #e4e5f1;
+    cursor: pointer;
+}
+.todos__item:last-child{
+    border: none;
+}
+
+.todos__left{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    max-width: 30rem;
+}
+
+.todos__container__text{
+    text-align: left;
+    width: 100%;
+}
+.todos__text__completed{
+    color: #d2d3db;
+    text-decoration: line-through;
+}

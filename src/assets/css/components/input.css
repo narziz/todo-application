@@ -1,0 +1,14 @@
+.todo__input{
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e4e5f1;
+}
+
+.todo__input__add{
+    border-radius: 4px 0 0 4px;
+}
+
+.todo__input__edit{
+    border-radius: 4px;
+    max-width: 100%;
+}

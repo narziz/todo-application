@@ -3,7 +3,13 @@ import { USER_ID } from '../constant';
 import axios from 'axios';
 
 const state = {
-    todos: []
+    todos: [],
+    showNav: 'all',
+    nav: [
+        { key: 'all', text: 'All'},
+        { key: 'false', text: 'Active'},
+        { key: 'true', text: 'Completed'},
+    ]
 }
 
 const mutations = {
@@ -26,16 +32,19 @@ const mutations = {
                 state.todos[index] = data
             }
         })
-        console.log(state.todos);
-        console.log(data);
+    },
+
+    activateNav(state, key){
+        state.showNav = key
     }
 }
 
 const getters = {
-
+    
 }
 
 const actions = {
+
     async getTodos ({ commit }) {
         let response = await axios('https://jsonplaceholder.typicode.com/todos');
         
@@ -55,11 +64,17 @@ const actions = {
             userId: USER_ID,
             id: state.todos.length + 1
         };
-        console.log('data -->> ', data);
-        let response = await axios.post('https://jsonplaceholder.typicode.com/todos', data);
-        console.log('response -->> ', response);
 
-        commit('addTodo', response.data);
+        let response = await axios.post('https://jsonplaceholder.typicode.com/todos', data);
+        console.log(response);
+
+        try {
+            if (response.status === 201) {
+                commit('addTodo', response.data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     async editTodo ({ commit }, payload) {
@@ -70,10 +85,15 @@ const actions = {
             completed: payload.todo.completed
         };
 
-        console.log('edit data done >> ', data);
         let response = await axios.put(`https://jsonplaceholder.typicode.com/todos/${payload.todo.id}`, data);
-        console.log('response -->> ', response);
-        commit('editTodo', data)
+        
+        try {
+            if (response.status === 200) {
+                commit('editTodo', response.data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     async editCompleted({ commit }, payload){
@@ -84,16 +104,46 @@ const actions = {
             completed: payload.done
         };
 
-        console.log('edit data done >> ', data);
         let response = await axios.put(`https://jsonplaceholder.typicode.com/todos/${payload.todo.id}`, data);
-        console.log('response -->> ', response);
-        commit('editTodo', data)
+
+        try {
+            if (response.status === 200) {
+                commit('editTodo', response.data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     },
 
     async deleteTodo ({ commit }, todo) {
         await axios.delete(`https://jsonplaceholder.typicode.com/todos/${todo.id}`);
         commit('deleteTodo', todo);
-    }
+    },
+
+    async filterTodos({ commit }, key){
+        let response;
+
+        if (key === 'all') {
+            response = await axios.get(`https://jsonplaceholder.typicode.com/todos`);
+        } else {
+            response = await axios.get(`https://jsonplaceholder.typicode.com/todos?completed=${key}`);
+        }
+        commit('setTodos', response.data);
+        
+    },
+
+    async deleteAllCompleted ({ commit, state }){
+        let completed = state.todos.filter(item => item.completed);
+        await completed.map((item) => {
+            axios.delete(`https://jsonplaceholder.typicode.com/todos/${item.id}`);
+            commit('deleteTodo', item);
+        });
+        
+    },
+
+    activateNav({ commit }, key){
+        commit('activateNav', key)
+    },
 }
 
 export default createStore({

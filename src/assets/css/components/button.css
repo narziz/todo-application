@@ -1,0 +1,59 @@
+.todo__button{
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.todo__button__add{
+    width: 4rem;
+    background: #992447;
+    color: white;
+    border-radius: 0 4px 4px 0;
+  }
+
+.todo__button__edit,
+.todo__button__delete{
+    color: #0f3443;
+    font-size: 1rem;
+    margin-inline: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 500ms ease-in-out;
+}
+.todos__item:hover .todo__button__edit,
+.todos__item:hover .todo__button__delete{
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+}
+.todo__button__check{
+    color: #249976;
+    background: white;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    border: 1px solid #249976;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo__button__check label {
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    
+}
+
+.todo__button__icon{
+    pointer-events: none;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -4,7 +4,7 @@
           <div class="todos__container todos__container__checkbox">
             <button v-on:click="editCompleted(todo)" class="todo__button todo__button__check">
               <label v-bind:for="todo.id">
-                <span v-show="completed"><i class="fas fa-check"></i></span>
+                <span class="todo__button__icon" v-show="completed"><i class="fas fa-check-circle"></i></span>
               </label>
               <input 
                 hidden
@@ -56,8 +56,9 @@ export default {
       },
 
       editCompleted(todo){
+        console.log(todo);
         this.completed = !this.completed;
-        this.$store.dispatch('editTodo', {
+        this.$store.dispatch('editCompleted', {
           todo: todo,
           done: this.completed
         });
@@ -75,76 +76,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.todos__item{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  border-bottom: 1px solid #cfcfcf;
-}
-.todos__item:last-child{
-  border: none;
-}
-
-.todo__input{
-  width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid #cfcfcf;
-  
-}
-.todo__input__edit{
-  border-radius: 4px;
-  max-width: 100%;
-}
-.todos__left{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  max-width: 30rem;
-}
-
-.todo__button{
-  cursor: pointer;
-  border: none;
-}
-.todo__button__edit,
-.todo__button__delete{
-  color: #114b81;
-  background: none;
-  font-size: 1rem;
-  margin-inline: 5px;
-}
-
-.todo__button__check{
-  background: none;
-  color: #159858;
-  width: 2rem;
-  height: 2rem;
-  padding: 0;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-  border: 1px solid #159858;
-}
-.todo__button__check label {
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  pointer-events: none;
-}
-.todo__button__check label i{
-  pointer-events: none;
-}
-.todos__container__text{
-  text-align: left;
-  width: 100%;
-}
-.todos__text__completed{
-  color: #cfcfcf;
-  text-decoration: line-through;
-}
-</style>
+<style src="../assets/css/layouts/todoItem.css" scoped></style>

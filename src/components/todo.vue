@@ -5,9 +5,13 @@
       <TodoNew />
     </div>
     <div class="todo__body">
+      <div v-if="isEmpty" class="todo__empty">{{ empty }}</div>
       <div class="todos">
         <TodoItem v-for="todo in todos" :key="todo.id" v-bind:todo="todo">{{ todo.title }}</TodoItem>
-    </div>
+      </div>
+      <div class="todo__footer">
+        <TodoFooter />
+      </div>
     </div>
   </div>
 </template>
@@ -16,91 +20,31 @@
 import {  mapState } from 'vuex';
 import TodoNew from './TodoNew.vue';
 import TodoItem from './TodoItem.vue';
+import TodoFooter from './TodoFooter.vue';
 
 export default {
   name: 'todo',
   components: {
     TodoNew,
-    TodoItem
+    TodoItem,
+    TodoFooter
   },
   data(){
     return {
-      title: 'Todo List'
+      title: 'Todo List',
+      empty: 'There is nothing to do...'
     }
   },
   computed: {
+    isEmpty(){
+      return this.todos.length == 0 ? true : false
+    },
     ...mapState(['todos'])
   },
-  methods: {
-    // ...mapActions(['getTodos'])
-  },
-
   mounted(){
     this.$store.dispatch("getTodos");
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1 {
-  margin: 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.todo__container{
-  width: 50%;
-  background: white;
-  /* padding: 2rem; */
-  border-radius: 0.5rem;
-}
-.todo__header{
-  padding: 2rem;
-  border-bottom: 1px solid #cfcfcf;
-  background: white;
-  border-radius: 0.5rem 0.5rem 0 0;
-}
-.todo__title{
-  margin-bottom: 1rem;
-}
-.todo__input{
-  width: 100%;
-  padding: 0.5rem 1rem;
-  border: 1px solid #cfcfcf;
-  border-radius: 4px 0 0 4px;
-}
-.todo__button{
-  cursor: pointer;
-  border: none;
-}
-.todo__button__edit,
-.todo__button__delete{
-  background: none;
-  font-size: 1rem;
-  margin-inline: 5px;
-}
-
-.todo__button__add{
-  width: 4rem;
-  background: #155799;
-  color: white;
-  border-radius: 0 4px 4px 0;
-}
-.todo_add{
-  display: flex;
-}
-.todos{
-  max-height: 300px;
-  overflow: auto;
-}
-</style>
+<style src="../assets/css/layouts/todo.css" scoped></style>

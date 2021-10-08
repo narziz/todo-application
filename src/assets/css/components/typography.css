@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+.todo__title{
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    color: #c92f5d;
+    font-weight: 500;
+}
+.footer_nav__item button,
+.footer_nav__button__clear{
+    font-weight: 600;
+    color: #9394a5;
+}
+.footer_nav__item:hover button,
+.footer_nav__button__clear:hover{
+    color: #c92f5d;
+}
+
+.footer_nav__active button{
+    color: #c92f5d;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #d2d3db;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c92f5d;
+  }
