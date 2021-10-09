@@ -1,21 +1,21 @@
 @import '../components/typography.css';
 
 .todo__container{
-    width: 50%;
+    width: 95%;
     background: white;
     border-radius: 0.5rem;
 }
 .todo__header{
-    padding: 2rem;
+    padding: 1rem;
     border-bottom: 1px solid #e4e5f1;
     background: white;
     border-radius: 0.5rem 0.5rem 0 0;
 }
 .todo__title{
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1rem 0;
 }
 .todo__empty{
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
 }
 .todo_add{
     display: flex;
@@ -27,6 +27,34 @@
 .todo__footer{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
+    border-top: 1px solid #e4e5f1;
+}
+
+
+
+@media (min-width: 426px){
+    .todo__container{
+        width: 80%;
+    }
+    .todo__header{
+        padding: 2rem;
+    }
+    .todo__title{
+        margin-bottom: 1.5rem;
+    }
+    .todo__footer{
+        padding: 1rem 2rem;
+    }
+    .todo__footer{
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 1024px){
+    .todo__container{
+        width: 60%;
+    }
 }

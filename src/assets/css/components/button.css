@@ -15,7 +15,6 @@
 .todo__button__delete{
     color: #0f3443;
     font-size: 1rem;
-    margin-inline: 5px;
     visibility: hidden;
     opacity: 0;
     transform: scale(0);

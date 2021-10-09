@@ -19,7 +19,6 @@ const mutations = {
 
     addTodo(state, data){
         state.todos.unshift(data);
-        console.log(state.todos);
     },
 
     deleteTodo (state, todo){

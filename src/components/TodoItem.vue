@@ -56,7 +56,6 @@ export default {
       },
 
       editCompleted(todo){
-        console.log(todo);
         this.completed = !this.completed;
         this.$store.dispatch('editCompleted', {
           todo: todo,

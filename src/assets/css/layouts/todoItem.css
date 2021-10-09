@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: .5rem 1rem;
     border-bottom: 1px solid #e4e5f1;
     cursor: pointer;
 }
@@ -21,6 +21,9 @@
     width: 100%;
     max-width: 30rem;
 }
+.todos__right{
+    display: flex;
+}
 
 .todos__container__text{
     text-align: left;
@@ -29,4 +32,10 @@
 .todos__text__completed{
     color: #d2d3db;
     text-decoration: line-through;
+}
+
+@media (min-width: 426px){
+    .todos__item{
+        padding: 1rem 2rem;
+    }
 }
